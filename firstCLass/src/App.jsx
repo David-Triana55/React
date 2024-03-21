@@ -27,10 +27,8 @@ function App(){
                 userName='vxnder'
                 name='Vanderhart' 
             />
-
         </div>
     )
-
 }
 
 export {App}

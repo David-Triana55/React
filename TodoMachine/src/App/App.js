@@ -1,10 +1,7 @@
 import React from 'react';
-import { TodoCounter } from '../TodoCounter/TodoCounter';
-import { TodoSearch } from '../TodoSearch/TodoSearch';
-import { TodoList } from '../TodoList/TodoList';
-import { TodoItem } from '../TodoItem/TodoItem';
-import { CreateTodoButton } from '../CreateTodoButton/CreateTodoButton';
+import { AppUI } from './AppUI';
 import { useLocalStorage } from './useLocalStogare';
+
 
 // const defaultTodos = [
 //   {text: 'cortarme el pelo', completed: true},
@@ -15,19 +12,21 @@ import { useLocalStorage } from './useLocalStogare';
 // ]
 
 
-
 function App() {
 
-  const [todos, saveTodo] = useLocalStorage('todo', [])
-
+  const {
+    item: todos,
+    saveItem: saveTodo,
+    loading,
+    error
+  } = useLocalStorage('todo', [])
 
   const [searchValue, setSearchValue] = React.useState('') // estado de TodoSearch
-  console.log('useState ',searchValue);
 
   let completedTodos = todos.filter(todo => !!todo.completed).length
   let totalTodos = todos.length
 
-  let searchTodos = todos.filter(todo => todo.text.toLowerCase().includes(searchValue))
+  let searchedTodos = todos.filter(todo => todo.text.toLowerCase().includes(searchValue))
 
 
 
@@ -47,34 +46,18 @@ function App() {
 
 
   return (
-    <>
-      <TodoCounter 
-        completed={completedTodos}  
-        total={totalTodos} 
-      /> {/*props */}
-      <TodoSearch  
-        searchValue={searchValue}
-        setSearchValue={setSearchValue} 
-      />
-
-      <TodoList>
-        {searchTodos.map(todo =>(
-          <TodoItem 
-            key={todo.text}   
-            text={todo.text} 
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-
-      <CreateTodoButton />
-
-    </>
+    <AppUI
+      loading={loading}
+      error={error}
+      completed={completedTodos}
+      totalTodos={totalTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />
   );
 }
-
-
 
 export default App;
