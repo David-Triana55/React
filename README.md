@@ -17,5 +17,10 @@ Esta es una aplicación desarrollada utilizando React.js que sirve como una list
 - **Interfaz de Usuario Responsiva:** La aplicación está diseñada para ser totalmente receptiva y se adapta a diferentes tamaños de pantalla y dispositivos, lo que garantiza una experiencia de usuario óptima en cualquier dispositivo.
 
 </p>
-<p>https://david-triana55.github.io/React/</p>
+
+<p>
+  ## Adjunto enlace de aplicación
+
+  - https://david-triana55.github.io/React/
+    </p>
 
