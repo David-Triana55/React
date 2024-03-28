@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/David-Triana55/React.git/static/css/main.505309af.css",
+    "main.js": "/David-Triana55/React.git/static/js/main.6e7b647c.js",
+    "index.html": "/David-Triana55/React.git/index.html",
+    "main.505309af.css.map": "/David-Triana55/React.git/static/css/main.505309af.css.map",
+    "main.6e7b647c.js.map": "/David-Triana55/React.git/static/js/main.6e7b647c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.505309af.css",
+    "static/js/main.6e7b647c.js"
+  ]
+}
