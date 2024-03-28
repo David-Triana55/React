@@ -19,7 +19,7 @@ Esta es una aplicación desarrollada utilizando React.js que sirve como una list
 </p>
 
 <p>
-  ## Adjunto enlace de aplicación
+  ** Adjunto enlace de aplicación **
 
   - https://david-triana55.github.io/React/
     </p>
