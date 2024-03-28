@@ -1,11 +1,14 @@
+import { useContext } from 'react'
 import './CreateTodoButton.css'
+import { TodoContext } from '../TodoContext/CreateContext'
 
 function CreateTodoButton(){
+    const {setIsOpen, isOpen} = useContext(TodoContext) 
     return (
         <button 
             className='CreateTodoButton'  
             onClick={() => 
-                console.log('le diste click')
+                {setIsOpen(!isOpen)}
             }
         >+</button>
     )

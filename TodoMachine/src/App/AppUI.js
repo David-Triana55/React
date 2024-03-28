@@ -8,7 +8,8 @@ import { TodosLoading } from "../TodosLoading/TodosLoading";
 import { TodosError } from "../TodosError/TodosError";
 import { EmptyTodos } from "../EmptyTodos/EmptyTodos";
 import { TodoContext } from "../TodoContext/CreateContext";
-
+import { Modal } from "../Modal/Modal";
+import { CreateTodo } from "../Modal/CreateTodo";
 
 export function AppUI() {
     const {
@@ -16,7 +17,9 @@ export function AppUI() {
         error,
         searchedTodos,
         completeTodo,
-        deleteTodo
+        deleteTodo,
+        isOpen,
+        setIsOpen
     } = React.useContext(TodoContext)
     return (
         <>
@@ -47,9 +50,15 @@ export function AppUI() {
                 ))}
                 
             </TodoList>
-
-
             <CreateTodoButton />
+
+            {isOpen && (
+                <Modal>
+                    <CreateTodo/>
+                </Modal>
+
+            )}
+
         </>
     )
 }
