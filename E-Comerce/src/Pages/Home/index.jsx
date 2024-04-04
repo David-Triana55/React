@@ -1,35 +1,44 @@
-import { useState, useEffect } from "react"
+import { useState, useContext } from "react"
 import Card from "../../Components/Card"
 import Layout from "../../Components/Layout"
 import ProductDetail from "../../Components/ProductDetail"
+import { ShoppingCartContext } from "../../Context"
 
 function Home(){
-    const [items , setItems] = useState(null)
+    const context = useContext(ShoppingCartContext)
+    
+    const currentPath = window.location.pathname
+    let index = currentPath.substring(currentPath.lastIndexOf('/') + 1)
 
-    useEffect(()=> {
-        const fetchData =  async () => {
-            try{
-                const res = await fetch('https://api.escuelajs.co/api/v1/products')
-                const data =  await res.json()
-                console.log(data);
-                setItems(data)
-            } catch(err) {
-                console.error(err);
-            }
+    const renderView = () => {
+        if (context.filteredItems?.length > 0) {
+            return (
+                context.filteredItems?.map(item => (
+                    <Card key={item.id} data={item} />
+                ))
+            )
+        } 
+        else {
+            return (
+                <div>We don't have anything :(</div>
+            )
         }
-        fetchData()
-    }, [])
-
+    }
 
     return (
         <Layout>
+            <div className="flex items-center justify-center relative w-80 mb-4">
+                <h1 className="font-medium text-xl">Exclusive Products</h1>
+            </div>
+            <input 
+                type="text"
+                placeholder="Search a product"
+                className="rounded-lg border border-black w-80 p-4 mb-6 focus:outline-none"
+                onChange={(event)=> context.setSearchByTitle(event.target.value)}
+            />
+
             <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-                {items?.map(item=> (
-                    <Card
-                        key={item.id}
-                        data={item}
-                    />
-                ))}
+                {renderView()}
             </div>
             <ProductDetail/>
         </Layout>
