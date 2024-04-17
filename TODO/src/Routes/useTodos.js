@@ -1,9 +1,9 @@
-import {useState, createContext} from "react";
+import {useState } from "react";
 import { useLocalStorage } from "./useLocalStogare";
+import { TodoList } from "../Components/TodoList/TodoList";
 
-const TodoContext = createContext()
 
-function TodoProvider ({children}){
+function useTodos (){
     
     const {
         item: todos,
@@ -29,30 +29,32 @@ function TodoProvider ({children}){
 
 
     const addTodo = (text) => {
+        const id = newId(todos)
         const newTodos = [...todos]
         newTodos.push({
             text,
-            completed: false
+            completed: false,
+            id
         })
         saveTodo(newTodos)
     }
 
-    const completeTodo = (text) => {
+    const completeTodo = (id) => {
         const newTodos = [...todos]
-        const todoIndex = newTodos.findIndex(todo => todo.text === text)
+        const todoIndex = newTodos.findIndex(todo => todo.id === id)
         newTodos[todoIndex].completed = true
         saveTodo(newTodos)
     }
 
-    const deleteTodo = (text) =>{
+    const deleteTodo = (id) =>{
         const newTodos = [...todos]
-        const todoindex = newTodos.findIndex(todo => todo.text === text)
+        const todoindex = newTodos.findIndex(todo => todo.id === id)
         newTodos.splice(todoindex, 1)
         saveTodo(newTodos)
     }
 
     return (
-        <TodoContext.Provider value={{// exponer las propiedades de una forma global
+        {
             loading,
             error,
             completedTodos, 
@@ -65,21 +67,17 @@ function TodoProvider ({children}){
             deleteTodo,
             isOpen,
             setIsOpen,
-        }}>
-            {children}
-        </TodoContext.Provider>
-
-    )
+        }    )
 }
 
-export {TodoContext,TodoProvider}
+function newId(todoList){
+    if(!todoList.length){
+        return 1
+    }
 
+    const idList = todoList.map(todo => todo.id)
+    const idMax = Math.max(...idList)
+    return idMax + 1 
+}
 
-// const defaultTodos = [
-//   {text: 'cortarme el pelo', completed: true},
-//   {text: 'desayunar', completed: true},
-//   {text: 'Estudiar React', completed: true},
-//   {text: 'ir a la universidad', completed: false},
-//   {text: 'Ir a cine', completed: false}
-// ]
-
+export {useTodos}

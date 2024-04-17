@@ -9,3 +9,6 @@
 .TodoCounter span{
     font-weight: bold;
 }
+.TodoCounter:disabled {
+    opacity: 25%;
+}

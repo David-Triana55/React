@@ -1,28 +1,27 @@
-import { TodoContext } from '../TodoContext/CreateContext'
+import { useNavigate } from 'react-router-dom'
 import './CreateTodo.css'
-import { useContext, useState } from 'react'
-function CreateTodo(){
-    const {setIsOpen,IsOpen, addTodo} = useContext(TodoContext)
-
+import { useState } from 'react'
+function CreateTodo(props){
+    const navigate = useNavigate()
     const [newTodoValue, setNewTodoValue] = useState('')
 
     const onSubmit = (event) => {
         event.preventDefault()
-        addTodo(newTodoValue)
-        setIsOpen(false)
+        navigate('/')        
+        props.submitEvent(newTodoValue)
+
     }
 
     const onCancel = () => {
-        setIsOpen(false)
+        navigate('/')
     }
 
     const onChange = (event) => {
         setNewTodoValue(event.target.value)
-
     }
     return (
         <form onSubmit={onSubmit}>
-            <label>Escribe tu nuevo TODO</label>
+            <label>{props.label}</label>
             <textarea
                 placeholder='Cortar cebolla para el almuerzo'
                 value={newTodoValue}
@@ -42,7 +41,7 @@ function CreateTodo(){
                     type='submit'
                     className='TodoForm-button
                     TodoForm-button--add'
-                >Agregar</button>
+                >{props.button}</button>
             </div>
         </form>
     )
