@@ -1,4 +1,5 @@
 import React from "react";
+import './editPage.css'
 import { CreateTodo } from "../../Modal/CreateTodo";
 import { useTodos } from "../useTodos";
 import { useLocation, useParams } from "react-router-dom";
@@ -22,14 +23,14 @@ function EditTodoPage() {
     }
     
         return (
-            <>
+            <div className="container-main">
                 <CreateTodo 
                     label='edita tu todo'   
                     defaultValue={todoText}
                     button='editar'
                     submitEvent={(text) => editTodo(num,text)}
                 />
-            </>
+            </div>
         )
 
 }
