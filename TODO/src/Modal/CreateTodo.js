@@ -3,13 +3,12 @@ import './CreateTodo.css'
 import { useState } from 'react'
 function CreateTodo(props){
     const navigate = useNavigate()
-    const [newTodoValue, setNewTodoValue] = useState('')
+    const [newTodoValue, setNewTodoValue] = useState(props.defaultValue ||'')
 
     const onSubmit = (event) => {
         event.preventDefault()
-        navigate('/')        
         props.submitEvent(newTodoValue)
-
+        navigate('/')        
     }
 
     const onCancel = () => {
@@ -26,7 +25,6 @@ function CreateTodo(props){
                 placeholder='Cortar cebolla para el almuerzo'
                 value={newTodoValue}
                 onChange={onChange}
-
             />
 
             <div className='TodoForm-buttonContainer'>

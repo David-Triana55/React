@@ -27,7 +27,6 @@ function useTodos (){
     })
     
 
-
     const addTodo = (text) => {
         const id = newId(todos)
         const newTodos = [...todos]
@@ -39,10 +38,22 @@ function useTodos (){
         saveTodo(newTodos)
     }
 
+    const getTodo = (id) => {
+        const todoIndex = todos.findIndex(todo => todo.id === id)
+        return todos[todoIndex]
+    }    
+
     const completeTodo = (id) => {
         const newTodos = [...todos]
         const todoIndex = newTodos.findIndex(todo => todo.id === id)
         newTodos[todoIndex].completed = true
+        saveTodo(newTodos)
+    }
+
+    const editTodo = (id, newText) => {
+        const newTodos = [...todos]
+        const todoIndex = newTodos.findIndex(todo => todo.id === id)
+        newTodos[todoIndex].text = newText
         saveTodo(newTodos)
     }
 
@@ -64,9 +75,11 @@ function useTodos (){
             searchedTodos,
             addTodo,
             completeTodo,
+            editTodo,
             deleteTodo,
             isOpen,
             setIsOpen,
+            getTodo
         }    )
 }
 
