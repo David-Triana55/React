@@ -11,12 +11,14 @@ Esta es una aplicación desarrollada utilizando React.js que sirve como una list
 - **Funcionalidades Principales:**
   - **Agregar Tareas:** Los usuarios pueden agregar nuevas tareas a la lista simplemente ingresando el texto y presionando un botón.
   - **Marcar Tareas Completadas:** Las tareas se pueden marcar como completadas, lo que proporciona una forma intuitiva de realizar un seguimiento del progreso.
+  - **Editar Tareas:** Se incluye una función de edición que permite a los usuarios modificar el contenido de las tareas existentes.
   - **Búsqueda de Tareas:** Se incorpora una función de búsqueda para permitir a los usuarios encontrar rápidamente tareas específicas dentro de la lista.
   - **Eliminar Tareas:** Los usuarios tienen la opción de eliminar tareas individualmente cuando ya no son necesarias.
   
+- **React Router para Creación y Edición de Tareas:** La aplicación utiliza React Router para facilitar la navegación entre las páginas de creación y edición de tareas, proporcionando una experiencia de usuario fluida y organizada.
+
 - **Interfaz de Usuario Responsiva:** La aplicación está diseñada para ser totalmente receptiva y se adapta a diferentes tamaños de pantalla y dispositivos, lo que garantiza una experiencia de usuario óptima en cualquier dispositivo.
 
 - **Adjunto enlace de aplicación:**
   - https://david-triana55.github.io/React/
 </p>
-
